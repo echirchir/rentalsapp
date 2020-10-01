@@ -1,0 +1,251 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Property Details</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+
+    <!-- Animation library for notifications   -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/animate.min.css}" />
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/light-bootstrap-dashboard.css?v=1.4.0}" />
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/demo.css}" />
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pe-icon-7-stroke.css.css}" />
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a th:href="@{/dashboard/}" class="simple-text">
+                    Rentals System
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/dashboard/businesses}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Businesses</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/dashboard/properties}">
+                        <i class="pe-7s-user"></i>
+                        <p>Properties</p>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboard/listings}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Listings</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-dashboard"></i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a th:href="@{/logout}">
+                                <p>Log out</p>
+                            </a>
+                        </li>
+                        <li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Property Details</h4>
+                                <hr />
+                            </div>
+                            <div class="content">
+
+                                <h5 class="title">PROPERTY NAME</h5>
+
+                                <h5 th:text="${property.propertyName }" class="description"></h5>
+
+                                <br />
+
+                                <h5 class="title">PROPERTY MANAGER</h5>
+
+                                <h5 th:text="${business.businessManager}" class="description"></h5>
+
+                                <br />
+
+                                <h5 class="title">PROPERTY LOCATION </h5>
+
+                                <h5 th:text="${property.propertyLocation}" class="description"></h5>
+
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Add New Listing</h4>
+                                <hr />
+                            </div>
+                            <div class="content">
+                                <form th:action="@{'/dashboard/listings/new/' + ${property.id}}" th:object="${listingForm}" method="post">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Listing Name</label>
+                                                <input type="text" class="form-control" th:field="*{name}" placeholder="3 Bedroom Apartment" value="">
+                                                <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Listing Name error</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Listing Price</label>
+                                                <input type="text" class="form-control" th:field="*{price}" placeholder="15,000" value="">
+                                                <p class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Listing Price error</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Listing Description</label>
+                                                <textarea class="form-control" placeholder="2nd Floor new apartment building" th:field="*{description}"></textarea>
+                                                <p class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Listing Description error</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">ADD</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Listings</h4>
+                                <p class="category">Current property listings</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>ID</th>
+                                        <th>Listing Name</th>
+                                        <th>Listing Price</th>
+                                        <th>Listing Status</th>
+                                        <th>Listing Date</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="listing : ${listings}">
+                                        <td th:text="${listing.id}"></td>
+                                        <td th:text="${listing.listingName}"></td>
+                                        <td th:text="${listing.listingPrice}"></td>
+                                        <td th:text="${listing.listingStatus.toUpperCase()}"></td>
+                                        <td th:text="${listing.listingDate}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a th:href="@{/dashboard/}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/dashboard/businesses/}">
+                                Businesses
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/dashboard/properties/}">
+                                Properties
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/dashboard/listings}">
+                                Listings
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/dashboard/">Rentals System</a>, by Elisha C
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+</body>
+
+<!-- base:js -->
+<script th:src="@{/../js/light-bootstrap-dashboard.js?v=1.4.0}"></script>
+<script th:src="@{/../js/chartist.min.js}"></script>
+
+<script th:src="@{/../js/jquery.3.2.1.min.js}"></script>
+<script th:src="@{/../js/bootstrap.min.js}"></script>
+<script th:src="@{/../js/bootstrap-notify.js}"></script>
+
+<script th:src="@{/../js/demo.js}"></script>
+
+</html>

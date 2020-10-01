@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+
+    <title>Login - Rentals System</title>
+</head>
+<body>
+
+    <div></div>
+
+    <div class="login-card" style="margin-top: 200px;">
+        <h1>Login</h1><br>
+
+        <form name="f" action="/login" method="post">
+
+            <input name="username" type="text" id="username" placeholder="Username">
+            <input name="password" type="password" id="password" placeholder="Password">
+            <input type="submit" name="login" class="login login-submit" value="login">
+
+            <div th:if="${param.error}" class="error">
+                Invalid username and password
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+            <br />
+        </form>
+
+        <div class="login-help">
+            <a th:href="@{/register}">Register</a>
+        </div>
+    </div>
+
+</body>
+</html>

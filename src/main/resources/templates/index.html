@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rentals Management Services</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="left">
+        </nav>
+        <a href="/" class="logo">Rentals Management</a>
+        <nav class="right">
+            <a href="/login" class="button alt">Log in</a>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner" th:style="'background:url('+ @{/img/header.jpeg} +');'">
+        <div class="content">
+            <h1>All Rentals In One Place</h1>
+            <p>Have you ever thought of moving? Of course you have!<br />We keep all open properties in one place.</p>
+            <ul class="actions">
+                <li><a href="/login" class="button scrolly">Get Started</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <h2>Get In Touch</h2>
+            <ul class="actions">
+                <li><span class="icon fa-phone"></span> <a href="#">(254) 717-121 909</a></li>
+                <li><span class="icon fa-envelope"></span> <a href="#">elisha.java@gmail.com</a></li>
+                <li><span class="icon fa-map-marker"></span> Nairobi, Kenya</li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; All Rights Reserved <a href="/">Rentals Management System</a>
+        </div>
+    </footer>
+
+    <script th:src="@{/../js/jquery.scrolly.min.js}"></script>
+    <script th:src="@{/../js/jquery.3.2.1.min.js}"></script>
+    <script th:src="@{/../js/skel.min.js}"></script>
+    <script th:src="@{/../js/utils.js}"></script>
+    <script th:src="@{/../js/index.js}"></script>
+</body>
+</html>

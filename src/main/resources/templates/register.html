@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+
+    <title>Register - Rentals System</title>
+</head>
+<body>
+
+<div></div>
+<div class="login-card" style="margin-top: 200px;">
+    <h1>Register</h1><br>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <!--<p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>-->
+        <input type="password" name="password" placeholder="Password">
+        <!--<p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>-->
+        <input type="password" name="passwordConfirm" placeholder="Confirm Password">
+        <!--<p class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Password confirm error</p>-->
+        <input type="submit" name="register" class="register login-submit" value="register" style="height:20px;">
+    </form>
+
+    <div class="login-help">
+        <a th:href="@{/login}">Login</a>
+    </div>
+</div>
+</body>
+</html>
